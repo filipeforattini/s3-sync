@@ -1,0 +1,4 @@
+vendor/
+.idea/
+sync_config.json
+sync_hist.json
