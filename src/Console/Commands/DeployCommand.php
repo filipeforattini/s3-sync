@@ -2,7 +2,6 @@
 namespace S3Sync\Console\Commands;
 
 use Aws\Common\Credentials\Credentials;
-use Aws\Exception\AwsException;
 use Exception;
 use S3Sync\Config;
 use Aws\S3\S3Client;
@@ -114,7 +113,7 @@ class DeployCommand extends Command
                 'Bucket' => $this->config->bucket,
                 'Key' => $this->fileToKey($file),
             ));
-        } catch (AwsException $e) {
+        } catch (Exception $e) {
             $this->output->writeln($e->getMessage());
             return false;
         }
@@ -134,7 +133,7 @@ class DeployCommand extends Command
                 'Key'    => $this->fileToKey($file),
                 'SourceFile' => $this->realPath($file)
             ]);
-        } catch (AwsException $e) {
+        } catch (Exception $e) {
             $this->output->writeln($e->getMessage());
             return false;
         }

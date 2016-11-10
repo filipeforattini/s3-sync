@@ -128,7 +128,7 @@ class Historical extends ArrayObject
     public function compareEquals(SplFileInfo $file)
     {
         if(! $this->has($file)) {
-            throw new InvalidArgumentException('The '.$file.' doesnt exists so it can\'t be compared.');
+            throw new InvalidArgumentException('The '.$file.' doesnt exist so it can\'t be compared.');
         }
 
         return $this->files[$file->getRelativePathname()] == md5_file($file);

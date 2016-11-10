@@ -4,7 +4,7 @@
 define('SYNC_CONFIG',   'sync_config.json');
 define('SYNC_HIST',     'sync_hist.json');
 
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../../../autoload.php';
 
 use S3Sync\Console\Application;
 

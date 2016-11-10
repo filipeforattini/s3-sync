@@ -2,3 +2,4 @@ vendor/
 .idea/
 sync_config.json
 sync_hist.json
+s3-sync.phar

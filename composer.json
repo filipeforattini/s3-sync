@@ -10,6 +10,8 @@
   ],
   "require": {
     "aws/aws-sdk-php": "2.4.*",
+    "seld/cli-prompt": "^1.0",
+    "seld/phar-utils": "^1.0",
     "symfony/console": "*",
     "symfony/finder": "*"
   },
