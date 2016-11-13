@@ -1,16 +1,14 @@
 #!/usr/bin/env php
 <?php
 
-define('SYNC_CONFIG',   'sync_config.json');
-define('SYNC_HIST',     'sync_hist.json');
-
 require __DIR__ . '/../../../autoload.php';
 
 use S3Sync\Console\Application;
 
 $app = new Application();
-$app->setConfig(new S3Sync\Config(getcwd() . '/' . SYNC_CONFIG));
-$app->setHistorical(new S3Sync\Historical(getcwd() . '/' . SYNC_HIST));
+$app->setConfig(new S3Sync\Config(getcwd() . '/sync_config.json'));
+$app->setHistorical(new S3Sync\Historical(getcwd() . '/sync_hist.json'));
 
 set_time_limit(0);
+
 $app->run();

@@ -67,10 +67,31 @@ class DeployCommand extends Command
             ),
         ]);
 
+        $this->config->ip = $this->getRealIpAddr();
+        $this->config->save();
+
         $this->deploy();
         $this->historical->save();
     }
 
+    /**
+     * @return string|null
+     */
+    protected function getRealIpAddr()
+    {
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else {
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+        return $ip;
+    }
+
+    /**
+     * Sends the files to AWS S3 Cloud
+     */
     protected function deploy()
     {
         foreach($this->historical->actions['remove'] as $file => $md5) {
@@ -88,6 +109,10 @@ class DeployCommand extends Command
         }
     }
 
+    /**
+     * @param  string $file
+     * @return string string
+     */
     protected function realPath($file)
     {
         return $this->config->getDirectory() . DIRECTORY_SEPARATOR . $file;
@@ -103,7 +128,7 @@ class DeployCommand extends Command
     }
 
     /**
-     * @param $file
+     * @param  $file
      * @return bool
      */
     protected function remove($file)

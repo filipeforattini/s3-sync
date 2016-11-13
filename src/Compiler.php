@@ -5,10 +5,9 @@ namespace S3Sync;
 use Phar;
 use SplFileInfo;
 use Seld\PharUtils\Timestamps;
-use Symfony\Component\Console\Helper\ProgressBar;
-use Symfony\Component\Console\Helper\Table;
-use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\Console\Helper\ProgressBar;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 class Compiler
 {
