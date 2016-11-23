@@ -84,7 +84,7 @@ class DeployCommand extends Command
         }
 
         foreach($this->historical->actions['add'] as $file => $md5) {
-            if($this->add($file)) {
+            if($this->send($file)) {
                 unset($this->historical->actions['add'][$file]);
                 $this->historical->files[$file] = $md5;
             }
@@ -132,7 +132,7 @@ class DeployCommand extends Command
      * @param $file
      * @return bool
      */
-    protected function add($file)
+    protected function send($file)
     {
         try {
             $this->s3->putObject([

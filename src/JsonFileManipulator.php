@@ -10,7 +10,11 @@ trait JsonFileManipulator
     public function readFile($filepath)
     {
         if(file_exists($filepath)) {
-            return json_decode(file_get_contents($filepath), true);
+            $content = json_decode(file_get_contents($filepath), true);
+
+            if(! is_null($content)) {
+                return $content;
+            }
         }
 
         return [];
