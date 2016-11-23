@@ -1,7 +1,7 @@
 <?php
 namespace S3Sync\Console\Commands;
 
-use Aws\Common\Credentials\Credentials;
+use Aws\Credentials\Credentials;
 use Exception;
 use S3Sync\Config;
 use Aws\S3\S3Client;
@@ -59,12 +59,16 @@ class DeployCommand extends Command
         $this->input = $input;
         $this->output = $output;
 
-        $this->s3 = S3Client::factory([
+        $this->s3 = new S3Client([
+            'version'       => 'latest',
             'region'        => $this->config->region,
             'credentials'   => new Credentials(
                 $this->config->aws_key,
                 $this->config->aws_secret
             ),
+            'http'          => [
+                'verify' => false
+            ]
         ]);
 
         $this->deploy();
